@@ -22,7 +22,7 @@ class ItemCard extends StatelessWidget {
           navigator(context: context, screen: ItemDetailsScreen(
             itemName: itemName,
             time: time,
-            price: price,
+            price: price??"0",
             image: image,
           ));
         },

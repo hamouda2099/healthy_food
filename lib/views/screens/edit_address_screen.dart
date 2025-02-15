@@ -86,32 +86,42 @@ class EditAddressScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
-                        width: 100,
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text("Save",style: TextStyle(
-                          color: kPrimaryColor,
-                            fontWeight: FontWeight.bold
+                      InkWell(
+                        onTap:(){
+                          navigator(context: context, screen: ProfileScreen());
+                        },
+                        child: Container(
+                          width: 100,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text("Save",style: TextStyle(
+                            color: kPrimaryColor,
+                              fontWeight: FontWeight.bold
 
-                        ),),
-                      ),
-                      Container(
-                        width: 100,
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
+                          ),),
                         ),
-                        child: Text("Cancel",style: TextStyle(
-                          color: kPrimaryColor,
-                          fontWeight: FontWeight.bold
-                        ),),
+                      ),
+                      InkWell(
+                        onTap: (){
+                          navigator(context: context, screen: ProfileScreen());
+                        },
+                        child: Container(
+                          width: 100,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text("Cancel",style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold
+                          ),),
+                        ),
                       )
                     ],
                   )

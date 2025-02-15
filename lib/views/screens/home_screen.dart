@@ -50,21 +50,8 @@ class HomeScreen extends ConsumerWidget {
                     SvgPicture.asset("assets/icons/notification.svg"),
                   ],
                 ),
-                Text(
-                  "Hi! Marwan",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 30),
-                ),
-                Text(
-                  "What’s your craving?",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14),
-                ),
-                100.h,
+
+                150.h,
                 Consumer(
                   builder: (context, ref, child) {
                     final tab = ref.watch(tabProvider);
@@ -176,6 +163,7 @@ class HomeScreen extends ConsumerWidget {
                               ),
                             ],
                           ),
+                          10.h,
                           tab == null
                               ? Expanded(
                                   child: SingleChildScrollView(
@@ -196,7 +184,7 @@ class HomeScreen extends ConsumerWidget {
                                           width: screenWidth,
                                           height: screenHeight / 6,
                                           child: ListView.builder(
-                                              itemCount: 5,
+                                              itemCount: 1,
                                               scrollDirection: Axis.horizontal,
                                               itemBuilder: (context, index) {
                                                 return Container(

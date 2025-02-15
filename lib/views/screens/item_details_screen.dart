@@ -9,15 +9,22 @@ import 'package:healthy_food/views/screens/cart_screen.dart';
 import 'package:healthy_food/views/screens/home_screen.dart';
 
 class ItemDetailsScreen extends ConsumerWidget {
-  ItemDetailsScreen({this.itemName,this.image,this.price,this.time});
+  ItemDetailsScreen(
+      {this.itemName, this.image, required this.price, this.time});
   String? itemName;
   String? time;
-  String? price;
+  String price;
   String? image;
-  final counterProvider = StateProvider<int>((ref)=>1);
+  final counterProvider = StateProvider<int>((ref) => 1);
+  final totalProvider = StateProvider<String>((ref) => "0");
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    WidgetsBinding.instance.addPostFrameCallback((callback) {
+      ref.read(totalProvider.notifier).state =
+          (ref.read(counterProvider.notifier).state * num.parse(price))
+              .toString();
+    });
     return Scaffold(
       backgroundColor: Color(0xFFE6E6E6),
       body: Stack(
@@ -36,21 +43,27 @@ class ItemDetailsScreen extends ConsumerWidget {
             child: Column(
               children: [
                 40.h,
-               Align(
-                 alignment: Alignment.topLeft,
-                 child: InkWell(
-                   onTap: (){
-                     navigator(context: context, screen: HomeScreen());
-                   },
-                   child
-                       : Padding(
-                     padding: const EdgeInsets.all(10.0),
-                     child: Icon(Icons.arrow_back_ios_new_rounded,color: Colors.white,),
-                   ),
-                 ),
-               ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                    onTap: () {
+                      navigator(context: context, screen: HomeScreen());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
                 40.h,
-                Image.asset("assets/images/$image.png",width: screenWidth/2,fit: BoxFit.fill,),
+                Image.asset(
+                  "assets/images/$image.png",
+                  width: screenWidth / 2,
+                  fit: BoxFit.fill,
+                ),
                 40.h,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,11 +71,18 @@ class ItemDetailsScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(itemName??"",style: TextStyle(color: Colors.white,fontSize: 22,fontWeight: FontWeight.bold),),
-                        Builder(builder: (context){
+                        Text(
+                          itemName ?? "",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Builder(builder: (context) {
                           return Consumer(
                             builder: (context, ref, child) {
-                              final counter  = ref.watch(counterProvider);
+                              final counter = ref.watch(counterProvider);
+                              final total = ref.watch(totalProvider);
                               return Container(
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -71,10 +91,17 @@ class ItemDetailsScreen extends ConsumerWidget {
                                 child: Row(
                                   children: [
                                     InkWell(
-                                      onTap:(){
-                                       if(counter != 1){
-                                         ref.read(counterProvider.notifier).state--;
-                                       }
+                                      onTap: () {
+                                        if (counter != 1) {
+                                          ref
+                                              .read(counterProvider.notifier)
+                                              .state--;
+                                          ref
+                                              .read(totalProvider.notifier)
+                                              .state = (counter *
+                                                  num.parse(price ?? "0"))
+                                              .toStringAsFixed(2);
+                                        }
                                       },
                                       child: Icon(
                                         Icons.remove,
@@ -85,8 +112,13 @@ class ItemDetailsScreen extends ConsumerWidget {
                                     Text(counter.toString()),
                                     10.w,
                                     InkWell(
-                                      onTap:(){
-                                        ref.read(counterProvider.notifier).state++;
+                                      onTap: () {
+                                        ref
+                                            .read(counterProvider.notifier)
+                                            .state++;
+                                        ref.read(totalProvider.notifier).state =
+                                            (counter * num.parse(price ?? "0"))
+                                                .toStringAsFixed(2);
                                       },
                                       child: Icon(
                                         Icons.add,
@@ -105,31 +137,43 @@ class ItemDetailsScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Description",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-                        Text("$price LE",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                        Text(
+                          "Description",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "$price LE",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    Text("Pizza & Chicken & Tomatoes",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
+                    Text(
+                      "Pizza & Chicken & Tomatoes",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
                     30.h,
                     Row(
                       children: [
                         Icon(
                           Icons.star,
-                          color: Colors
-                              .amberAccent,
+                          color: Colors.amberAccent,
                         ),
                         10.w,
                         Text(
                           "4.9",
-                          style:
-                          TextStyle(
-                            color: Colors
-                                .grey,
-                            fontSize:
-                            20,
-                            fontWeight:
-                            FontWeight
-                                .bold,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -137,72 +181,86 @@ class ItemDetailsScreen extends ConsumerWidget {
                     Text(
                       "450 calories",
                       style: TextStyle(
-                        color: Colors
-                            .grey,
+                        color: Colors.grey,
                         fontSize: 20,
-                        fontWeight:
-                        FontWeight
-                            .bold,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
                 Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Total",style: TextStyle(
-                      color: kPrimaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22
-                    ),),
-                    Text("80.00 LE",style: TextStyle(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22
-                    ),)
-                  ],
+                Consumer(
+                  builder: (context, ref, child) {
+                    final total = ref.watch(totalProvider);
+                    final counter = ref.watch(counterProvider);
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Total",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
+                        ),
+                        Text(
+                          "$total LE",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
+                        )
+                      ],
+                    );
+                  },
                 ),
                 20.h,
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     CartScreen.cart.add({
-                      "name":itemName,
-                      "image":image,
+                      "name": itemName,
+                      "image": image,
                       "price": price,
-                      "count":ref.read(counterProvider.notifier).state
+                      "count": ref.read(counterProvider.notifier).state
                     });
                   },
                   child: Container(
-                    width: screenWidth/2,
+                    width: screenWidth / 2,
                     decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(100)
-                    ),
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(100)),
                     child: Row(
                       children: [
                         Container(
-                          width: 50,height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: Colors.white, shape: BoxShape.circle),
+                          child: Icon(Icons.shopping_cart),
                         ),
-                        child: Icon(Icons.shopping_cart),
-                        ),
-                        Expanded(child: Align(
+                        Expanded(
+                          child: Align(
                             alignment: Alignment.center,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Checkout",style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.bold),),
+                                Text(
+                                  "Checkout",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
                                 40.w,
                               ],
-                            )))
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
                 )
-
               ],
             ),
           )

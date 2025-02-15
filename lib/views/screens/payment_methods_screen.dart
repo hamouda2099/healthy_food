@@ -125,19 +125,24 @@ class PaymentMethodsScreen extends StatelessWidget {
                    ),
                  ),
                   50.h,
-                  Container(
-                    width: screenWidth/1.5,
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text("Add Cards",style: TextStyle(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.bold
+                  InkWell(
+                    onTap:(){
+                      navigator(context: context, screen: ProfileScreen());
+                    },
+                    child: Container(
+                      width: screenWidth/1.5,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text("Add Cards",style: TextStyle(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.bold
 
-                    ),),
+                      ),),
+                    ),
                   ),
                   20.h,
                 ],

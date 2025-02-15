@@ -190,186 +190,187 @@ class AuthScreen extends ConsumerWidget {
                           child: PageView(
                             controller: pageController,
                             children: [
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CustomField(
-                                        controller: TextEditingController(),
-                                        width: screenWidth / 1.5,
-                                        hint: "Username",
-                                        icon: Icon(
-                                          Icons.person,
-                                          color: Colors.black.withOpacity(.4),
-                                        ),
-                                        action: Icon(
-                                          Icons.star,
-                                          size: 10,
-                                          color: Colors.red,
-                                        ),
+                              SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CustomField(
+                                      controller: TextEditingController(),
+                                      width: screenWidth / 1.5,
+                                      hint: "Username",
+                                      icon: Icon(
+                                        Icons.person,
+                                        color: Colors.black.withOpacity(.4),
                                       ),
-                                      20.h,
-                                      CustomField(
-                                        controller: TextEditingController(),
-                                        width: screenWidth / 1.5,
-                                        hint: "Email",
-                                        icon: Icon(
-                                          Icons.email,
-                                          color: Colors.black.withOpacity(.4),
-                                        ),
-                                        action: Icon(
-                                          Icons.star,
-                                          size: 10,
-                                          color: Colors.red,
-                                        ),
+                                      action: Icon(
+                                        Icons.star,
+                                        size: 10,
+                                        color: Colors.red,
                                       ),
-                                      20.h,
-                                      CustomField(
-                                        controller: TextEditingController(),
-                                        width: screenWidth / 1.5,
-                                        secure: true,
-                                        hint: "Password",
-                                        icon: Icon(
-                                          Icons.person,
-                                          color: Colors.black.withOpacity(.4),
-                                        ),
-                                        action: Icon(
-                                          Icons.star,
-                                          size: 10,
-                                          color: Colors.red,
-                                        ),
+                                    ),
+                                    20.h,
+                                    CustomField(
+                                      controller: TextEditingController(),
+                                      width: screenWidth / 1.5,
+                                      hint: "Email",
+                                      icon: Icon(
+                                        Icons.email,
+                                        color: Colors.black.withOpacity(.4),
                                       ),
-                                      20.h,
-                                      CustomField(
-                                        controller: TextEditingController(),
-                                        width: screenWidth / 1.5,
-                                        secure: true,
-                                        hint: "Confirm Password",
-                                        icon: Icon(
-                                          Icons.person,
-                                          color: Colors.black.withOpacity(.4),
-                                        ),
-                                        action: Icon(
-                                          Icons.star,
-                                          size: 10,
-                                          color: Colors.red,
-                                        ),
+                                      action: Icon(
+                                        Icons.star,
+                                        size: 10,
+                                        color: Colors.red,
                                       ),
-                                      20.h,
-                                      Padding(
-                                        padding: const EdgeInsets.all(20.0),
-                                        child: InkWell(
-                                          onTap: (){
-                                            pageController.animateToPage(1, duration: Duration(seconds: 1), curve: Curves.easeIn);
-                                          },
-                                          child: Container(
-                                            width: screenWidth / 1.2,
-                                            padding: EdgeInsets.all(10),
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                color: kPrimaryColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: Text(
-                                              "Sign Up",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                    ),
+                                    20.h,
+                                    CustomField(
+                                      controller: TextEditingController(),
+                                      width: screenWidth / 1.5,
+                                      secure: true,
+                                      hint: "Password",
+                                      icon: Icon(
+                                        Icons.person,
+                                        color: Colors.black.withOpacity(.4),
+                                      ),
+                                      action: Icon(
+                                        Icons.star,
+                                        size: 10,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    20.h,
+                                    CustomField(
+                                      controller: TextEditingController(),
+                                      width: screenWidth / 1.5,
+                                      secure: true,
+                                      hint: "Confirm Password",
+                                      icon: Icon(
+                                        Icons.person,
+                                        color: Colors.black.withOpacity(.4),
+                                      ),
+                                      action: Icon(
+                                        Icons.star,
+                                        size: 10,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    20.h,
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: InkWell(
+                                        onTap: (){
+                                          pageController.animateToPage(1, duration: Duration(seconds: 1), curve: Curves.easeIn);
+                                        },
+                                        child: Container(
+                                          width: screenWidth / 1.2,
+                                          padding: EdgeInsets.all(10),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              color: kPrimaryColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Text(
+                                            "Sign Up",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          CustomField(
-                                            controller: TextEditingController(),
-                                            width: screenWidth / 2.5,
-                                            hint: "Weight(KG)",
-                                            icon: Icon(
-                                              Icons.person,
-                                              color: Colors.black.withOpacity(.4),
-                                            ),
-                                            action: Icon(
-                                              Icons.star,
-                                              size: 10,
-                                              color: Colors.red,
-                                            ),
+                              SingleChildScrollView(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        CustomField(
+                                          controller: TextEditingController(),
+                                          width: screenWidth / 2.5,
+                                          hint: "Weight(KG)",
+                                          icon: Icon(
+                                            Icons.person,
+                                            color: Colors.black.withOpacity(.4),
                                           ),
-                                          CustomField(
-                                            controller: TextEditingController(),
-                                            width: screenWidth / 2.5,
-                                            hint: "Height(cm)",
-                                            icon: Icon(
-                                              Icons.person,
-                                              color: Colors.black.withOpacity(.4),
-                                            ),
-                                            action: Icon(
-                                              Icons.star,
-                                              size: 10,
-                                              color: Colors.red,
-                                            ),
+                                          action: Icon(
+                                            Icons.star,
+                                            size: 10,
+                                            color: Colors.red,
                                           ),
-                                        ],
-                                      ),
-                                      20.h,
-                                      CustomField(
-                                        controller: TextEditingController(),
-                                        width: screenWidth / 1.2,
-                                        hint: "Gender",
-                                        icon: Icon(
-                                          Icons.email,
-                                          color: Colors.black.withOpacity(.4),
                                         ),
-                                        action: Icon(
-                                          Icons.keyboard_arrow_down_sharp,
-                                          size: 10,
-                                          color: Colors.red,
+                                        CustomField(
+                                          controller: TextEditingController(),
+                                          width: screenWidth / 2.5,
+                                          hint: "Height(cm)",
+                                          icon: Icon(
+                                            Icons.person,
+                                            color: Colors.black.withOpacity(.4),
+                                          ),
+                                          action: Icon(
+                                            Icons.star,
+                                            size: 10,
+                                            color: Colors.red,
+                                          ),
                                         ),
+                                      ],
+                                    ),
+                                    20.h,
+                                    CustomField(
+                                      controller: TextEditingController(),
+                                      width: screenWidth / 1.2,
+                                      hint: "Gender",
+                                      icon: Icon(
+                                        Icons.email,
+                                        color: Colors.black.withOpacity(.4),
                                       ),
-                                      20.h,
-                                      Padding(
-                                        padding: const EdgeInsets.all(20.0),
-                                        child: InkWell(
-                                          onTap: (){
-                                            signupDialog(context);
-                                          },
-                                          child: Container(
-                                            width: screenWidth / 1.2,
-                                            padding: EdgeInsets.all(10),
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                color: kPrimaryColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: Text(
-                                              "Sign Up",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                      action: Icon(
+                                        Icons.keyboard_arrow_down_sharp,
+                                        size: 10,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    20.h,
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: InkWell(
+                                        onTap: (){
+                                          signupDialog(context);
+                                        },
+                                        child: Container(
+                                          width: screenWidth / 1.2,
+                                          padding: EdgeInsets.all(10),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              color: kPrimaryColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          child: Text(
+                                            "Sign Up",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
+                                    ),
 
-                                      Text(
+                                    InkWell(
+                                      onTap: (){
+                                        navigator(context: context, screen: HomeScreen());
+                                      },
+                                      child: Text(
                                         "Skip",
                                         style: TextStyle(
                                             color: kPrimaryColor,
                                             fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ],
